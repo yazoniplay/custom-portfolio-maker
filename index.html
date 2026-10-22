@@ -30,7 +30,8 @@
             <legend><span class="section-number">01</span> About you</legend>
             <div class="field"><label for="fullName">Full name <span class="required">*</span></label><input id="fullName" name="fullName" maxlength="80" value="Alex Morgan" placeholder="e.g. Alex Morgan" required></div>
             <div class="field"><label for="role">Role / tagline</label><input id="role" name="role" maxlength="120" value="Developer & digital creator" placeholder="What do you do?"></div>
-            <div class="field"><label for="bio">A little about you</label><textarea id="bio" name="bio" rows="4" maxlength="800" placeholder="What do you build? What are you curious about?">I build thoughtful digital experiences, experiment with new technologies, and turn ideas into useful things on the web.</textarea><span class="field-hint">Keep it real. A few sentences is plenty.</span></div>
+            <div class="field"><label for="headline">Portfolio headline</label><input id="headline" name="headline" maxlength="100" value="Curious mind. Builder’s mindset." placeholder="A short phrase that describes you"></div>
+            <div class="field"><label for="bio">About / description</label><textarea id="bio" name="bio" rows="4" maxlength="800" placeholder="What do you build? What are you curious about?">I build thoughtful digital experiences, experiment with new technologies, and turn ideas into useful things on the web.</textarea><span class="field-hint">Keep it real. A few sentences is plenty.</span></div>
             <div class="field"><label for="avatar">Profile image URL <span class="optional">OPTIONAL</span></label><input id="avatar" name="avatar" type="url" placeholder="https://example.com/avatar.jpg"><span class="field-hint">Use a public image URL. Leave blank for initials.</span></div>
           </fieldset>
           <fieldset class="form-section">
@@ -40,12 +41,22 @@
             <div class="field"><label for="social">LinkedIn / social URL</label><input id="social" name="social" type="url" placeholder="https://linkedin.com/in/username"></div>
           </fieldset>
           <fieldset class="form-section">
-            <legend><span class="section-number">03</span> Skills <span class="legend-note">What you work with</span></legend>
+            <legend><span class="section-number">03</span> Design & colors <span class="legend-note">Make it yours</span></legend>
+            <div class="field"><label for="theme">Color preset</label><select id="theme" class="theme-select"><option value="midnight">Midnight blue</option><option value="violet">Electric violet</option><option value="emerald">Emerald</option><option value="sunset">Sunset coral</option><option value="minimal">Minimal monochrome</option><option value="custom">Custom colors</option></select></div>
+            <div class="color-grid">
+              <div class="field"><label for="backgroundColor">Background</label><div class="color-control"><input id="backgroundColor" type="color" value="#0b1020"><span id="backgroundColorValue">#0B1020</span></div></div>
+              <div class="field"><label for="accentColor">Accent</label><div class="color-control"><input id="accentColor" type="color" value="#829dff"><span id="accentColorValue">#829DFF</span></div></div>
+              <div class="field"><label for="highlightColor">Highlight</label><div class="color-control"><input id="highlightColor" type="color" value="#54e0c0"><span id="highlightColorValue">#54E0C0</span></div></div>
+            </div>
+            <p class="field-hint">Pick a preset or choose your own colors. The preview updates instantly.</p>
+          </fieldset>
+          <fieldset class="form-section">
+            <legend><span class="section-number">04</span> Skills <span class="legend-note">What you work with</span></legend>
             <div id="skills-list" class="dynamic-list"></div>
             <button type="button" class="add-button" id="add-skill"><span>＋</span> Add a skill</button>
           </fieldset>
           <fieldset class="form-section">
-            <legend><span class="section-number">04</span> Projects <span class="legend-note">Show what you can do</span></legend>
+            <legend><span class="section-number">05</span> Projects <span class="legend-note">Show what you can do</span></legend>
             <div id="projects-list" class="dynamic-list projects-list"></div>
             <button type="button" class="add-button" id="add-project"><span>＋</span> Add a project</button>
           </fieldset>
