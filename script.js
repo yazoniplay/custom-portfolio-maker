@@ -71,8 +71,8 @@
     '@media(max-width:650px){.site{padding:0 18px}.hero{grid-template-columns:1fr;padding:45px 0 35px}.portrait{grid-row:1;width:105px;height:125px}.avatar-fallback{font-size:30px}.section{grid-template-columns:1fr;gap:14px;padding:32px 0}.projects{grid-template-columns:1fr}.contact{align-items:flex-start;flex-direction:column}.nav-right{gap:10px}.nav-right a{font-size:12px}}';
   }
   function renderPortfolio(d) {
-    const e = escapeHTML, validEmail = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(d.email);
-    const initials = d.name.split(/\\s+/).filter(Boolean).slice(0,2).map(x => x[0]).join('').toUpperCase() || 'Y';
+    const e = escapeHTML, validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email);
+    const initials = d.name.split(/\s+/).filter(Boolean).slice(0,2).map(x => x[0]).join('').toUpperCase() || 'Y';
     const avatar = d.avatar
       ? '<img class="avatar-img" src="' + e(d.avatar) + '" alt="' + e(d.name) + '"><span class="avatar-fallback" hidden>' + e(initials) + '</span>'
       : '<span class="avatar-fallback">' + e(initials) + '</span>';
@@ -83,15 +83,15 @@
     ].filter(Boolean).join('');
     const skills = d.skills.length ? d.skills.map(s => '<span class="skill">' + e(s) + '</span>').join('') : '<span class="muted">Add your skills in the editor.</span>';
     const projects = d.projects.length ? d.projects.map((p,i) => '<article class="project"><div class="project-top"><span>PROJECT ' + String(i+1).padStart(2,'0') + '</span><span>↗</span></div><h3>' + e(p.name || 'Untitled project') + '</h3><p>' + e(p.description || 'Project description coming soon.') + '</p><div class="project-links">' + (p.live ? '<a href="' + e(p.live) + '" target="_blank" rel="noopener noreferrer">Live demo ↗</a>' : '') + (p.repo ? '<a href="' + e(p.repo) + '" target="_blank" rel="noopener noreferrer">Source code ↗</a>' : '') + '</div></article>').join('') : '<p class="empty-projects">Your projects will appear here when you add them.</p>';
-    let html = '<!doctype html>\\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="' + e(d.role) + ' — portfolio of ' + e(d.name) + '"><title>' + e(d.name) + ' — Portfolio</title><style>' + portfolioCSS(d) + '</style></head><body><div class="site">';
+    let html = '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="' + e(d.role) + ' — portfolio of ' + e(d.name) + '"><title>' + e(d.name) + ' — Portfolio</title><style>' + portfolioCSS(d) + '</style></head><body><div class="site">';
     html += '<nav><a class="wordmark" href="#top">' + e(d.name) + '<span>.</span></a><div class="nav-right"><a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Projects</a><a href="#contact">Contact</a></div></nav><main id="top">';
     html += '<section class="hero"><div><div class="eyebrow">✳ YOUR PORTFOLIO</div><p class="hello">Hello, I’m</p><h1>' + e(d.name) + '<span class="period">.</span></h1><h2>' + e(d.role) + '</h2><p class="hero-bio">' + e(d.bio) + '</p><div class="hero-actions"><a class="primary-link" href="#work">View my projects ↘</a>' + (validEmail ? '<a class="secondary-link" href="mailto:' + e(d.email) + '">Contact me</a>' : '') + '</div></div><div class="portrait">' + avatar + '<div class="portrait-caption">DESIGNING & BUILDING</div></div><div class="hero-index">PORTFOLIO / ' + new Date().getFullYear() + '</div></section>';
-    html += '<section class="section" id="about"><div class="section-label"><span>01</span> ABOUT ME</div><div class="section-content"><h2>' + e(d.headline).replace(/\\n/g,'<br>') + '</h2><p>' + e(d.bio).replace(/\\n/g,'<br>') + '</p><div class="socials">' + (links || '<span class="muted">Add your social links in the editor.</span>') + '</div></div></section>';
+    html += '<section class="section" id="about"><div class="section-label"><span>01</span> ABOUT ME</div><div class="section-content"><h2>' + e(d.headline).replace(/\n/g,'<br>') + '</h2><p>' + e(d.bio).replace(/\n/g,'<br>') + '</p><div class="socials">' + (links || '<span class="muted">Add your social links in the editor.</span>') + '</div></div></section>';
     html += '<section class="section" id="skills"><div class="section-label"><span>02</span> MY SKILLS</div><div class="section-content"><h2>My toolkit</h2><div class="skills">' + skills + '</div></div></section>';
     html += '<section class="section" id="work"><div class="section-label"><span>03</span> SELECTED PROJECTS</div><div class="section-content"><div class="work-heading"><h2>Things I’ve built</h2><span class="project-count">' + String(d.projects.length).padStart(2,'0') + ' PROJECTS</span></div><div class="projects">' + projects + '</div></div></section>';
     html += '<section class="contact" id="contact"><div><div class="section-label"><span>04</span> WHAT’S NEXT?</div><h2>Have an idea?<br><span>Let’s make it real.</span></h2></div><div>' + (validEmail ? '<a href="mailto:' + e(d.email) + '" class="contact-button">Say hello ↗</a>' : '<p class="muted">Find me through my links.</p>') + '<div class="socials">' + links + '</div></div></section></main>';
     html += '<footer class="footer"><span>© ' + new Date().getFullYear() + ' ' + e(d.name) + '</span><a href="#top">BACK TO TOP ↑</a><span>BUILT WITH INTENTION</span></footer></div>';
-    html += '<script>document.querySelectorAll(".avatar-img").forEach(function(i){i.addEventListener("error",function(){i.hidden=true;if(i.nextElementSibling)i.nextElementSibling.hidden=false;});});<\\/script></body></html>';
+    html += '<script>document.querySelectorAll(".avatar-img").forEach(function(i){i.addEventListener("error",function(){i.hidden=true;if(i.nextElementSibling)i.nextElementSibling.hidden=false;});});<\/script></body></html>';
     return html;
   }
   function renderNow() {
